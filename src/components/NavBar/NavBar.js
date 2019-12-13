@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
-import { Navbar, NavItem } from 'react-materialize'
 import './NavBar.css'
 
 class NavBar extends Component {
 
   render() {
-    let navBarItems = [<NavItem key={1} href='/'>Home</NavItem>]
+    let navBarItems = [<a key={1} href='/'>Home</a>]
     if (this.props.isLoggedIn) {
-      navBarItems.push(<NavItem key={2} href='/logout'>Log Out</NavItem>)
+      navBarItems.push(<a key={2} href='/logout'>Log Out</a>)
       if (this.props.user != null) {
-        navBarItems.push(<NavItem key={5} href='/profile'>{this.props.user.email}</NavItem>)
+        navBarItems.push(<a key={5} href='/profile'>{this.props.user.email}</a>)
       }
 
     } else {
-      navBarItems.push(<NavItem key={3} href='/signup'>Sign Up</NavItem>)
-      navBarItems.push(<NavItem key={4} href='/login'>Log In</NavItem>)
+      navBarItems.push(<a key={3} href='/signup'>Sign Up</a>)
+      navBarItems.push(<a key={4} href='/login'>Log In</a>)
     }
     return (
-      <Navbar brand='Project 4 React Starter' className='nav' right>
+      <nav brand='Project 4 React Starter' className='nav' right>
 
         {navBarItems}
-      </Navbar>
+      </nav>
     )
   }
 }

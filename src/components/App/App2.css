@@ -1,0 +1,126 @@
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: antiquewhite;
+}
+body * {
+  font-family: 'Courier New', Courier, monospace;
+}
+.App {
+  text-align: center;
+}
+a {
+  font-weight: 900;
+  margin: 3px;
+  color: indianred;
+  text-decoration: none;
+  background-color: paleturquoise;
+  padding: 3px;
+  border: solid 2px steelblue;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+/* initial TestingBlock styles */
+div.testBlock {
+  padding: 15px;
+  border: 7px solid black;
+  margin:10px auto;
+  border-radius: 5px;
+  max-width: 500px;
+  font-weight: 900;
+}
+button {
+  padding: 3px;
+  margin: 5px;
+  background-color: antiquewhite;
+  border: 2px solid steelblue;
+  color: #222266;
+  font-size: 75%;
+  font-weight: 900;
+}
+.backgroundDiv {
+  padding: 0.3rem;
+  margin: 0.5rem;
+  border: 4px solid #bbbbbb;
+}
+.colorManifest,form {
+  padding: 5px;
+  margin: 2px;
+  background-color: #99bbdd;
+  font-weight: 900;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border: 2px solid #829288;
+  overflow: visible;
+}
+input,label {
+  padding: 3px;
+  margin: 2px;
+  background-color: #99bbdd;
+  font-weight: 900;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+h3 {
+  font-size: 150%;
+}
+#group1,#group2,#group3 {
+  overflow: hidden;
+}
+.group1Abs {
+  position:absolute;
+}
+#configWrapperDiv {
+  position: relative,
+}
+#configHistoryDiv,#bgColorDiv {
+  position: fixed;
+  top: 0.7em;
+  background-color: cadetblue;
+  border: 4px solid black;
+  padding: 6px;
+  font-weight: 900;
+}
+#bgColorDiv {
+  right: 0.7em;
+}
+#configHistoryDiv {
+  left: 0.7em;
+}
+.otherh4 {
+  background-color: cadetblue;
+  border: 2px solid black;
+  padding: 6px;
+  font-weight: 900;
+  display: inline-block;
+  border-radius: 17px;
+  /* margin: 6px; */
+}
+h1 {
+  font-size: 150%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 12px;
+  font-weight: 900;
+  color: #224488;
+  text-decoration: underline overline double;
+}
+.basicText {
+  margin: 0.5em;
+  padding: 0.5em;
+  background-color: #ddc848;
+  border: 7px solid black;
+  border-radius: 5px;
+  line-height: 130%;
+  font-weight: 900;
+  text-align: left;
+  font-size: 120%;
+}
+.basicText a {
+  line-height: 75%;
+}
+h4 {
+  margin-bottom: 0.4em;
+}
+img {
+  border: 7px double teal;
+  border-radius:17px;
+}
