@@ -20,7 +20,7 @@ class HowToUse extends Component {
                         extension in order for the color scheme randomization to work. I have not tested it
                         against regular ad-blockers or other extensions.
                     </p>
-                    <h4 class='otherh4' >Screenshot of the Configure Colors function</h4>
+                    <h4 className='otherh4' >Screenshot of the Configure Colors function</h4>
                     <img src={require("./configure-colors.jpg")} alt="screenshot of configure colors page" />
             </div>
         )

@@ -92,7 +92,7 @@ class App2 extends Component {
     let tempColors = this.state.colors
     let removedColor = tempColors[index]
     let removedColors = this.state.removedColors
-    removedColors.push([`${index}: #${removedColor}`,`#${removedColor}`])
+    removedColors.push([`${index}: #${removedColor}`, `#${removedColor}`])
     tempColors[index] = color
     this.setState({
       colors: tempColors,
@@ -110,14 +110,14 @@ class App2 extends Component {
   }
   bgWhite() {
     let wholePage = document.querySelector('body')
-    wholePage.setAttribute('style','background-color: antiquewhite')
+    wholePage.setAttribute('style', 'background-color: antiquewhite')
     this.setState({
       bgColorPrint: 'antiquewhite'
     })
   }
   bgBlack() {
     let wholePage = document.querySelector('body')
-    wholePage.setAttribute('style','background-color: #050812;')
+    wholePage.setAttribute('style', 'background-color: #050812;')
     this.setState({
       bgColorPrint: '#050812'
     })
@@ -146,12 +146,12 @@ class App2 extends Component {
           <Route path="/randomize-colors">
             <RandomizeColors colorTags={colorTags} positionings={positionings}
               positionClass={positionClass} paragraphText={paragraphText}
-              randomizeColors={this.randomizeColors} 
+              randomizeColors={this.randomizeColors}
               bgColor={this.bgColor} bgWhite={this.bgWhite} bgBlack={this.bgBlack} />
           </Route>
           <Route path="/randomize-layout">
-            <RandomizeLayout colorTags={colorTags} positionings={positionings} positionClass={positionClass} 
-            shuffleLayout={this.shuffleLayout} hipsterIpsum={this.hipsterIpsum} paragraphText={paragraphText} />
+            <RandomizeLayout colorTags={colorTags} positionings={positionings} positionClass={positionClass}
+              shuffleLayout={this.shuffleLayout} hipsterIpsum={this.hipsterIpsum} paragraphText={paragraphText} />
           </Route>
           <Route path="/configure-colors">
             <ConfigureColors colorTags={colorTags} positionings={positionings}

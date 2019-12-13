@@ -6,8 +6,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
     <Router>
-        <App1 />
         <App2 />
+        <App1 />
     </Router>,
     document.getElementById('root')
 );
