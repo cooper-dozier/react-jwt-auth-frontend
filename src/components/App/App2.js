@@ -39,7 +39,8 @@ class App2 extends Component {
 
   randomizeColors() {
     axios({
-      url: `https://cors-anywhere.herokuapp.com/http://www.colr.org/json/schemes/random/1`,
+      url: `http://www.colr.org/json/schemes/random/1`,
+      // url: `https://cors-anywhere.herokuapp.com/http://www.colr.org/json/schemes/random/1`,
       method: 'get'
     })
       .then(response => {
@@ -54,7 +55,8 @@ class App2 extends Component {
 
   fetchScheme(schemeId) {
     axios({
-      url: `https://cors-anywhere.herokuapp.com/http://www.colr.org/json/scheme/${schemeId}`,
+      // url: `https://cors-anywhere.herokuapp.com/http://www.colr.org/json/scheme/${schemeId}`,
+      url: `http://www.colr.org/json/scheme/${schemeId}`,
       method: 'get'
     })
     .then(response => {
@@ -68,7 +70,8 @@ class App2 extends Component {
 
   hipsterIpsum() {
     axios({
-      url: 'https://cors-anywhere.herokuapp.com/http://hipsterjesus.com/api/?paras=1&html=false',
+      url: 'http://hipsterjesus.com/api/?paras=1&html=false',
+      // url: 'https://cors-anywhere.herokuapp.com/http://hipsterjesus.com/api/?paras=1&html=false',
       method: 'get'
     })
       .then(response => {
