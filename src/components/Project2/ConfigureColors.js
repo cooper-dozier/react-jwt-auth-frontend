@@ -45,12 +45,12 @@ class ConfigureColors extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Which slot to change?
+                        Slot to set?
                         <input type="number" value={this.state.value1} onChange={this.handleChange1}
                             placeholder='a number 0-10' />
                     </label>
                     <label>
-                        Which color to change it to?
+                        Color to set it to?
                         <input type="text" value={this.state.value2} onChange={this.handleChange2}
                             placeholder='six digit hexadecimal' />
                     </label>

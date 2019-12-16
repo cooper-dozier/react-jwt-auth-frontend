@@ -9,9 +9,11 @@ import axios from 'axios'
 import NavBar from '../NavBar/NavBar'
 import SignUpForm from '../SignUpForm/SignUpForm'
 import LogInForm from '../LogInForm/LogInForm'
-import LogOut from '../LogOut/LogOut'
+import App2 from './App2'
 import Profile from '../Profile/Profile'
+import './App2.css'
 import './App1.css'
+
 
 const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
 
@@ -113,7 +115,7 @@ class App1 extends Component {
         this.setState({
           isLoggedIn: true,
           user: response.data.user,
-          email: '',
+          // email: '',
           password: ''
         })
         const location = {
@@ -128,7 +130,7 @@ class App1 extends Component {
   render() {
     return (
       <div>
-        <NavBar isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
+        <NavBar email={this.state.email} isLoggedIn={this.state.isLoggedIn} /* user={this.state.user} */ handleLogOut={e => this.handleLogOut(e)} />
         <div className='body'>
           <Switch>
             <Route path='/signup'
@@ -138,13 +140,13 @@ class App1 extends Component {
                 )
               }}
             />
-            <Route path='/logout'
+            {/* <Route path='/logout'
               render={(props) => {
                 return (
                   <LogOut isLoggedIn={this.state.isLoggedIn} handleLogOut={e => this.handleLogOut(e)} />
                 )
               }}
-            />
+            /> */}
             <Route path='/login'
               render={(props) => {
                 return (
@@ -155,10 +157,17 @@ class App1 extends Component {
             <Route path='/profile'
               render={(props) => {
                 return (
-                  <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
+                  <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} email={this.state.email} />
                 )
               }}
             />
+            <Route path='/color-explorer'
+              render={(props) => {
+              return (
+                <App2 />
+            )
+              }}
+          />
           </Switch>
         </div>
       </div>

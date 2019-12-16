@@ -25,6 +25,7 @@ class App2 extends Component {
       removedColors: [],
       paragraphText: '',
       bgColorPrint: 'antiquewhite',
+      colrOrgId: -1,
     }
     this.randomizeColors = this.randomizeColors.bind(this)
     this.shuffleLayout = this.shuffleLayout.bind(this)
@@ -33,6 +34,7 @@ class App2 extends Component {
     this.bgColor = this.bgColor.bind(this)
     this.bgWhite = this.bgWhite.bind(this)
     this.bgBlack = this.bgBlack.bind(this)
+    this.fetchScheme = this.fetchScheme.bind(this)
   }
 
   randomizeColors() {
@@ -43,9 +45,25 @@ class App2 extends Component {
       .then(response => {
         this.setState({
           colors: response.data.schemes[0].colors,
-        })
+          colrOrgId: response.data.schemes[0].id
 
+        })
+        console.log(response.data.schemes[0].id)
       })
+  }
+
+  fetchScheme(schemeId) {
+    axios({
+      url: `https://cors-anywhere.herokuapp.com/http://www.colr.org/json/scheme/${schemeId}`,
+      method: 'get'
+    })
+    .then(response => {
+      this.setState({
+        colors: response.data.schemes[0].colors,
+        colrOrgId: response.data.schemes[0].id
+      })
+      // console.log(response.data.schemes[0].id)
+    })
   }
 
   hipsterIpsum() {
@@ -134,20 +152,21 @@ class App2 extends Component {
 
       <Router basename='/'>
         <div className="App">
-          <h1>Color Schemes Explorer</h1>
+          {/* <h1>Color Schemes Explorer</h1> */}
           <nav>
-            <Link to="/">How to Use</Link>
-            <Link to="/randomize-colors">Randomize by Color Scheme</Link>
-            <Link to="/randomize-layout">Randomize Layout</Link>
+            {/* <Link to="/">How to Use</Link> */}
+            <Link to="/">Randomize Palette</Link>
+            <Link to="/randomize-layout">Randomize Page</Link>
             <Link to="/configure-colors">Configure Colors</Link>
-            <Link to="/configure-text">Configure Text</Link>
+            {/* <Link to="/configure-text">Configure Text</Link> */}
           </nav>
-          <Route exact path="/" component={HowToUse} />
-          <Route path="/randomize-colors">
+          {/* <Route exact path="/" component={HowToUse} /> */}
+          <Route path="/">
             <RandomizeColors colorTags={colorTags} positionings={positionings}
               positionClass={positionClass} paragraphText={paragraphText}
               randomizeColors={this.randomizeColors}
-              bgColor={this.bgColor} bgWhite={this.bgWhite} bgBlack={this.bgBlack} />
+              bgColor={this.bgColor} bgWhite={this.bgWhite} bgBlack={this.bgBlack} 
+              fetchScheme={this.fetchScheme} />
           </Route>
           <Route path="/randomize-layout">
             <RandomizeLayout colorTags={colorTags} positionings={positionings} positionClass={positionClass}
@@ -158,11 +177,11 @@ class App2 extends Component {
               positionClass={positionClass} paragraphText={paragraphText} bgColorPrint={this.state.bgColorPrint}
               removedColors={this.state.removedColors} setAColor={this.setAColor} />
           </Route>
-          <Route path='/configure-text'>
+          {/* <Route path='/configure-text'>
             <ConfigureText colorTags={colorTags} positionings={positionings}
               positionClass={positionClass} paragraphText={paragraphText} bgColorPrint={this.state.bgColorPrint}
               removedColors={this.state.removedColors} setAColor={this.setAColor} />
-          </Route>
+          </Route> */}
         </div>
       </Router>
     );
