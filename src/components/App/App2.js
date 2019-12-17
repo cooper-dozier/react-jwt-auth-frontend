@@ -157,14 +157,14 @@ class App2 extends Component {
         <div className="App">
           {/* <h1>Color Schemes Explorer</h1> */}
           <nav>
-            {/* <Link to="/">How to Use</Link> */}
-            <Link to="/">Randomize Palette</Link>
+            <Link to="/">How to Use</Link>
+            <Link to="/randomize-colors">Randomize Palette</Link>
             <Link to="/randomize-layout">Randomize Page</Link>
             <Link to="/configure-colors">Configure Colors</Link>
             {/* <Link to="/configure-text">Configure Text</Link> */}
           </nav>
-          {/* <Route exact path="/" component={HowToUse} /> */}
-          <Route path="/">
+          <Route exact path="/" component={HowToUse} />
+          <Route path="/randomize-colors">
             <RandomizeColors colorTags={colorTags} positionings={positionings}
               positionClass={positionClass} paragraphText={paragraphText}
               randomizeColors={this.randomizeColors}
