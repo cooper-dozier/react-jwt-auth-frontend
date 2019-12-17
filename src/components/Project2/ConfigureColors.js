@@ -59,7 +59,8 @@ class ConfigureColors extends Component {
 
                 <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings}
-                    paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} />
+                    paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} 
+                    textSettings={this.props.textSettings} />
             </div>
         )
     }

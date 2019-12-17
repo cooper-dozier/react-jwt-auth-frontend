@@ -1,0 +1,23 @@
+TODO:
+attach frontend to backend
+    save palette to db
+        save btn
+        save as btn
+    load palette from db
+    delete db palette
+    update db palette
+        save btn
+
+    F to B extras:
+        delete acct
+        load db palette by colr.org id
+        save w colr.org id
+
+
+store colr.org id
+clear colr.org id if a change to colors is made
+
+text shuffler
+    monospace serif sans-serif cursive/handwriting
+    left center right justify
+    italic bold regular italic-bold

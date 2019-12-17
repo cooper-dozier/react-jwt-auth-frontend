@@ -39,7 +39,8 @@ class RandomizeColors extends Component {
                 {/* <button onClick={() => this.props.fetchScheme()}>Set Me</button> */}
                 <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings} 
-                paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} />
+                paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} 
+                textSettings={this.props.textSettings} />
             </div>
         )
     }

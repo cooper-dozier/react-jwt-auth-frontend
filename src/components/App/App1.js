@@ -35,26 +35,6 @@ class App1 extends Component {
         isLoggedIn: false
       })
     }
-    // if (localStorage.token) {
-    //   axios(
-    //     {
-    //       method: 'post',
-    //       url: `${databaseUrl}/api/users`,
-    //       headers: { Authorization: `Bearer ${localStorage.token}` }
-    //     })
-    //     .then(response => {
-    //       this.setState({
-    //         isLoggedIn: true,
-    //         user: response.data.user
-    //       })
-    //       this.props.history.push('/profile')
-    //     })
-    //     .catch(err => console.log(err))
-    // } else {
-    //   this.setState({
-    //     isLoggedIn: false
-    //   })
-    // }
   }
 
   handleLogOut = (e) => {
@@ -140,13 +120,6 @@ class App1 extends Component {
                 )
               }}
             />
-            {/* <Route path='/logout'
-              render={(props) => {
-                return (
-                  <LogOut isLoggedIn={this.state.isLoggedIn} handleLogOut={e => this.handleLogOut(e)} />
-                )
-              }}
-            /> */}
             <Route path='/login'
               render={(props) => {
                 return (
@@ -163,11 +136,11 @@ class App1 extends Component {
             />
             <Route path='/color-explorer'
               render={(props) => {
-              return (
-                <App2 />
-            )
+                return (
+                  <App2 />
+                )
               }}
-          />
+            />
           </Switch>
         </div>
       </div>

@@ -5,7 +5,6 @@ import axios from 'axios';
 import RandomizeColors from '../Project2/RandomizeColors';
 import RandomizeLayout from '../Project2/RandomizeLayout';
 import ConfigureColors from '../Project2/ConfigureColors';
-import ConfigureText from '../Project2/ConfigureText';
 import HowToUse from '../Project2/HowToUse';
 
 import {
@@ -26,6 +25,7 @@ class App2 extends Component {
       paragraphText: '',
       bgColorPrint: 'antiquewhite',
       colrOrgId: -1,
+      textSettings: [],
     }
     this.randomizeColors = this.randomizeColors.bind(this)
     this.shuffleLayout = this.shuffleLayout.bind(this)
@@ -35,6 +35,7 @@ class App2 extends Component {
     this.bgWhite = this.bgWhite.bind(this)
     this.bgBlack = this.bgBlack.bind(this)
     this.fetchScheme = this.fetchScheme.bind(this)
+    this.shuffleText = this.shuffleText.bind(this)
   }
 
   randomizeColors() {
@@ -59,19 +60,19 @@ class App2 extends Component {
       url: `http://www.colr.org/json/scheme/${schemeId}`,
       method: 'get'
     })
-    .then(response => {
-      this.setState({
-        colors: response.data.schemes[0].colors,
-        colrOrgId: response.data.schemes[0].id
+      .then(response => {
+        this.setState({
+          colors: response.data.schemes[0].colors,
+          colrOrgId: response.data.schemes[0].id
+        })
+        // console.log(response.data.schemes[0].id)
       })
-      // console.log(response.data.schemes[0].id)
-    })
   }
 
   hipsterIpsum() {
     axios({
-      url: 'http://hipsterjesus.com/api/?paras=1&html=false',
-      // url: 'https://cors-anywhere.herokuapp.com/http://hipsterjesus.com/api/?paras=1&html=false',
+      // url: 'http://hipsterjesus.com/api/?paras=1&html=false',
+      url: 'https://cors-anywhere.herokuapp.com/http://hipsterjesus.com/api/?paras=1&html=false',
       method: 'get'
     })
       .then(response => {
@@ -82,6 +83,88 @@ class App2 extends Component {
         console.log(this.state.paragraphText)
       })
   }
+
+  shuffleText() {
+    let tempVars = [];
+    let textSettingsArray = [];
+    // for each of 3 h3's and 3 p's
+    // 0-3 of values monospace, serif, sans-serif, cursive/handwriting
+    // 0-3 of values text-align: left, center, right, justify
+    // 0-1 of values font-weight: normal, bold 
+    // 0-1 of values font-style: italic, normal
+    // 24 total properties to set out of 12 possible values
+    function shuffleOf4() { return Math.floor(Math.random() * 4) }
+    function shuffleOf2() { return Math.floor(Math.random() * 2) }
+    // get 12 random numbers from 0-3
+    for (let i = 0; i < 12; i++) {
+      tempVars[i] = shuffleOf4()
+    }
+    // get 12 random number from 0-1
+    for (let i = 12; i < 24; i++) {
+      tempVars[i] = shuffleOf2()
+    }
+    // set six random values for font-family
+    for (let i = 0; i < 6; i++) {
+      switch (tempVars[i]) {
+        case 0:
+          textSettingsArray[i] = 'monospace';
+          break;
+        case 1:
+          textSettingsArray[i] = 'serif';
+          break;
+        case 2:
+          textSettingsArray[i] = 'sans-serif';
+          break;
+        case 3:
+          textSettingsArray[i] = 'handwriting';
+          break;
+      }
+    }
+    // set six random values for text-align
+    for (let i = 6; i < 12; i++) {
+      switch (tempVars[i]) {
+        case 0:
+          textSettingsArray[i] = 'left';
+          break;
+        case 1:
+          textSettingsArray[i] = 'center';
+          break;
+        case 2:
+          textSettingsArray[i] = 'right';
+          break;
+        case 3:
+          textSettingsArray[i] = 'justify';
+          break;
+      }
+    }
+    // set 6 random values for font-weight
+    for (let i = 12; i < 18; i++) {
+      switch (tempVars[i]) {
+        case 0:
+          textSettingsArray[i] = 'normal';
+          break;
+        case 1:
+          textSettingsArray[i] = 'bold';
+          break;
+      }
+    }
+    // set 6 random values for font-style
+    for (let i = 18; i < 24; i++) {
+      switch (tempVars[i]) {
+        case 0:
+          textSettingsArray[i] = 'normal';
+          break;
+        case 1:
+          textSettingsArray[i] = 'italic';
+          break;
+      }
+    }
+    console.log(textSettingsArray)
+    this.setState({
+      textSettings: textSettingsArray,
+    })
+  }
+
 
   shuffleLayout() {
     let positionsArray = []
@@ -150,6 +233,7 @@ class App2 extends Component {
     let positionings = this.state.positionings
     let positionClass = this.state.positionClass
     let paragraphText = this.state.paragraphText
+    let textSettings = this.state.textSettings
 
     return (
 
@@ -168,23 +252,20 @@ class App2 extends Component {
             <RandomizeColors colorTags={colorTags} positionings={positionings}
               positionClass={positionClass} paragraphText={paragraphText}
               randomizeColors={this.randomizeColors}
-              bgColor={this.bgColor} bgWhite={this.bgWhite} bgBlack={this.bgBlack} 
-              fetchScheme={this.fetchScheme} />
+              bgColor={this.bgColor} bgWhite={this.bgWhite} bgBlack={this.bgBlack}
+              fetchScheme={this.fetchScheme} textSettings={textSettings} />
           </Route>
           <Route path="/randomize-layout">
             <RandomizeLayout colorTags={colorTags} positionings={positionings} positionClass={positionClass}
-              shuffleLayout={this.shuffleLayout} hipsterIpsum={this.hipsterIpsum} paragraphText={paragraphText} />
+              shuffleLayout={this.shuffleLayout} hipsterIpsum={this.hipsterIpsum} paragraphText={paragraphText}
+              textSettings={textSettings} shuffleText={this.shuffleText} />
           </Route>
           <Route path="/configure-colors">
             <ConfigureColors colorTags={colorTags} positionings={positionings}
               positionClass={positionClass} paragraphText={paragraphText} bgColorPrint={this.state.bgColorPrint}
-              removedColors={this.state.removedColors} setAColor={this.setAColor} />
+              removedColors={this.state.removedColors} setAColor={this.setAColor}
+              textSettings={textSettings} />
           </Route>
-          {/* <Route path='/configure-text'>
-            <ConfigureText colorTags={colorTags} positionings={positionings}
-              positionClass={positionClass} paragraphText={paragraphText} bgColorPrint={this.state.bgColorPrint}
-              removedColors={this.state.removedColors} setAColor={this.setAColor} />
-          </Route> */}
         </div>
       </Router>
     );

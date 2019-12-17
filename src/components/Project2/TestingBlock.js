@@ -11,6 +11,18 @@ class TestingBlock extends Component {
             height: '600px',
             width: '750px',
         }
+        // colors set via fetchScheme() or randomizeColors(), then setAColor(),
+        // and then the map function with colorTags in App2.js
+        // called by RandomizeColors.js
+        // or by user action ConfigureColors.js via setAColor() and colorTags
+
+        // left, top, width, height, borderWidth, borderRadius, and fontSize
+        // are all set by shuffleLayout() in App2.js
+        // called by RandomizeLayout.js
+
+        // fontFamily, textAlign, fontWeight, and fontStyle are all set by
+        // shuffleText in App2.js
+        // called by RandomizeLayout.js
         let groupOneDiv = {
             backgroundColor: this.props.colorTags[1],
             borderColor: this.props.colorTags[7],
@@ -47,26 +59,50 @@ class TestingBlock extends Component {
         let groupOneH3 = {
             color: this.props.colorTags[2],
             fontSize: this.props.positionings[31],
+            fontFamily: this.props.textSettings[0],
+            textAlign: this.props.textSettings[6],
+            fontWeight: this.props.textSettings[12],
+            fontStyle: this.props.textSettings[18],
         }
         let groupOneP = {
             color: this.props.colorTags[3],
             fontSize: this.props.positionings[34],
+            fontFamily: this.props.textSettings[1],
+            textAlign: this.props.textSettings[7],
+            fontWeight: this.props.textSettings[13],
+            fontStyle: this.props.textSettings[19],
         }
         let groupTwoH3 = {
-            color: this.props.colorTags[210],
+            color: this.props.colorTags[10],
             fontSize: this.props.positionings[32],
+            fontFamily: this.props.textSettings[2],
+            textAlign: this.props.textSettings[8],
+            fontWeight: this.props.textSettings[14],
+            fontStyle: this.props.textSettings[20],
         }
         let groupTwoP = {
             color: this.props.colorTags[5],
             fontSize: this.props.positionings[35],
+            fontFamily: this.props.textSettings[3],
+            textAlign: this.props.textSettings[9],
+            fontWeight: this.props.textSettings[15],
+            fontStyle: this.props.textSettings[21],
         }
         let groupThreeH3 = {
             color: this.props.colorTags[8],
             fontSize: this.props.positionings[33],
+            fontFamily: this.props.textSettings[4],
+            textAlign: this.props.textSettings[10],
+            fontWeight: this.props.textSettings[16],
+            fontStyle: this.props.textSettings[22],
         }
         let groupThreeP = {
             color: this.props.colorTags[9],
             fontSize: this.props.positionings[36],
+            fontFamily: this.props.textSettings[5],
+            textAlign: this.props.textSettings[11],
+            fontWeight: this.props.textSettings[17],
+            fontStyle: this.props.textSettings[23],
         }
 
         return (
