@@ -1,8 +1,11 @@
 TODO:
 attach frontend to backend
-    save palette to db
-        save btn
-        save as btn
+
+    ###save palette to db
+        save btn - save to same is always going to be a put not a post
+        working but not fully integrated
+        save as btn - save new or save as will always be a post not a put 
+
     load palette from db
     delete db palette
     update db palette

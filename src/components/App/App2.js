@@ -13,6 +13,8 @@ import {
   Link
 } from 'react-router-dom';
 
+const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
+
 
 class App2 extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class App2 extends Component {
       positionClass: 'static',
       removedColors: [],
       paragraphText: '',
+      headingText: '',
       bgColorPrint: 'antiquewhite',
       colrOrgId: -1,
       textSettings: [],
@@ -38,6 +41,8 @@ class App2 extends Component {
     this.shuffleText = this.shuffleText.bind(this)
   }
 
+
+
   randomizeColors() {
     axios({
       url: `http://www.colr.org/json/schemes/random/1`,
@@ -50,7 +55,7 @@ class App2 extends Component {
           colrOrgId: response.data.schemes[0].id
 
         })
-        console.log(response.data.schemes[0].id)
+        // console.log(response.data.schemes[0].id)
       })
   }
 
@@ -70,17 +75,29 @@ class App2 extends Component {
   }
 
   hipsterIpsum() {
+    // let pArray = []
     axios({
       // url: 'http://hipsterjesus.com/api/?paras=1&html=false',
-      url: 'https://cors-anywhere.herokuapp.com/http://hipsterjesus.com/api/?paras=1&html=false',
+      // url: 'https://cors-anywhere.herokuapp.com/http://hipsterjesus.com/api/?paras=1&html=false',
+      url: 'http://www.randomtext.me/api/giberish/p-3/15-75',
       method: 'get'
     })
       .then(response => {
+        // pArray = response.data.text_out.slice(3,-5).split("</p> <p>")
+        // console.log(pArray)
         // console.log(response.data.text)
         this.setState({
-          paragraphText: response.data.text,
+          paragraphText: response.data.text_out.slice(3,-5).replace(/<p[^>]*>/g, "").split('</p>'),
         })
-        console.log(this.state.paragraphText)
+      })
+      axios({
+        url: 'https://www.randomtext.me/api/giberish/h1/1-10',
+        method: 'get'
+      })
+      .then(response => {
+        this.setState({
+          headingText: response.data.text_out.slice(3,-5),
+        })
       })
   }
 
@@ -227,6 +244,40 @@ class App2 extends Component {
     })
   }
 
+  
+
+  saveScheme = () => {
+    // e.preventDefault()
+    let colorTags4Save = this.state.colors.map((element) => { return `#${element}` })
+    let saveSchemeObj = {
+      colrOrgId: -1,
+      paletteName: 'dummy',
+      notes: 'whatevs',
+      userId: 3,
+      color0: colorTags4Save[0],
+      color1: colorTags4Save[1],
+      color2: colorTags4Save[2],
+      color3: colorTags4Save[3],
+      color4: colorTags4Save[4],
+      color5: colorTags4Save[5],
+      color6: colorTags4Save[6],
+      color7: colorTags4Save[7],
+      color8: colorTags4Save[8],
+      color9: colorTags4Save[9],
+      color10: colorTags4Save[10]
+    }
+    axios(
+      {
+        method: 'post',
+        url: `${databaseUrl}/api/palettes`,
+        data: saveSchemeObj
+      })
+      .then(response => {
+        console.log(response)
+        console.log(saveSchemeObj)
+      })
+      .catch(err => console.log(err))
+  }
 
   render() {
     let colorTags = this.state.colors.map((element) => { return `#${element}` })
@@ -234,12 +285,13 @@ class App2 extends Component {
     let positionClass = this.state.positionClass
     let paragraphText = this.state.paragraphText
     let textSettings = this.state.textSettings
+    console.log(this.state.paragraphText)
 
     return (
 
       <Router basename='/'>
         <div className="App">
-          {/* <h1>Color Schemes Explorer</h1> */}
+        <button onClick={() => this.saveScheme()}>saveScheme</button>
           <nav>
             <Link to="/">How to Use</Link>
             <Link to="/randomize-colors">Randomize Palette</Link>
