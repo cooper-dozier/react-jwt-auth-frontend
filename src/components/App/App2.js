@@ -6,6 +6,7 @@ import RandomizeColors from '../Project2/RandomizeColors';
 import RandomizeLayout from '../Project2/RandomizeLayout';
 import ConfigureColors from '../Project2/ConfigureColors';
 import HowToUse from '../Project2/HowToUse';
+// import machinery from '../machinery.js';
 
 import {
   HashRouter as Router,
@@ -29,6 +30,7 @@ class App2 extends Component {
       bgColorPrint: 'antiquewhite',
       colrOrgId: -1,
       textSettings: [],
+      isLoggedIn: false,
     }
     this.randomizeColors = this.randomizeColors.bind(this)
     this.shuffleLayout = this.shuffleLayout.bind(this)
@@ -37,8 +39,23 @@ class App2 extends Component {
     this.bgColor = this.bgColor.bind(this)
     this.bgWhite = this.bgWhite.bind(this)
     this.bgBlack = this.bgBlack.bind(this)
+
     this.fetchScheme = this.fetchScheme.bind(this)
     this.shuffleText = this.shuffleText.bind(this)
+    this.saveScheme = this.saveScheme.bind(this)
+  }
+
+  componentDidMount() {
+    this.hipsterIpsum()
+    // if (localStorage.token) {
+    //   this.setState({
+    //     isLoggedIn: true
+    //   })
+    // } else {
+    //   this.setState({
+    //     isLoggedIn: false
+    //   })
+    // }
   }
 
 
@@ -70,33 +87,29 @@ class App2 extends Component {
           colors: response.data.schemes[0].colors,
           colrOrgId: response.data.schemes[0].id
         })
-        // console.log(response.data.schemes[0].id)
       })
   }
 
   hipsterIpsum() {
-    // let pArray = []
     axios({
-      // url: 'http://hipsterjesus.com/api/?paras=1&html=false',
-      // url: 'https://cors-anywhere.herokuapp.com/http://hipsterjesus.com/api/?paras=1&html=false',
       url: 'http://www.randomtext.me/api/giberish/p-3/15-75',
       method: 'get'
     })
       .then(response => {
-        // pArray = response.data.text_out.slice(3,-5).split("</p> <p>")
-        // console.log(pArray)
-        // console.log(response.data.text)
         this.setState({
-          paragraphText: response.data.text_out.slice(3,-5).replace(/<p[^>]*>/g, "").split('</p>'),
+          // remove <p> tags, but not </p> tags, in .replace()
+          // https://stackoverflow.com/questions/24302485/remove-p-tags-regular-expression-regex
+          paragraphText: response.data.text_out.slice(3, -5).replace(/<p[^>]*>/g, "").split('</p>'),
         })
       })
-      axios({
-        url: 'https://www.randomtext.me/api/giberish/h1/1-10',
-        method: 'get'
-      })
+    axios({
+      url: 'https://www.randomtext.me/api/giberish/p-3/1-10',
+      method: 'get'
+    })
       .then(response => {
         this.setState({
-          headingText: response.data.text_out.slice(3,-5),
+          // randomtext.me doesnt support multiples of h1 tags and we dont want the tags anyway
+          headingText: response.data.text_out.slice(3, -6).replace(/<p[^>]*>/g, "").split('</p>'),
         })
       })
   }
@@ -124,16 +137,23 @@ class App2 extends Component {
     for (let i = 0; i < 6; i++) {
       switch (tempVars[i]) {
         case 0:
+          // case 4:
           textSettingsArray[i] = 'monospace';
           break;
         case 1:
+          // case 5:
           textSettingsArray[i] = 'serif';
           break;
         case 2:
+          // case 6:
+          // case 7:
           textSettingsArray[i] = 'sans-serif';
           break;
         case 3:
-          textSettingsArray[i] = 'handwriting';
+          textSettingsArray[i] = 'cursive';
+          break;
+        default:
+          textSettingsArray[i] = 'monospace';
           break;
       }
     }
@@ -141,16 +161,23 @@ class App2 extends Component {
     for (let i = 6; i < 12; i++) {
       switch (tempVars[i]) {
         case 0:
+          // case 4:
           textSettingsArray[i] = 'left';
           break;
         case 1:
+          // case 5:
           textSettingsArray[i] = 'center';
           break;
         case 2:
+          // case 6:
           textSettingsArray[i] = 'right';
           break;
         case 3:
+          // case 7:
           textSettingsArray[i] = 'justify';
+          break;
+        default:
+          textSettingsArray[i] = 'center';
           break;
       }
     }
@@ -158,9 +185,14 @@ class App2 extends Component {
     for (let i = 12; i < 18; i++) {
       switch (tempVars[i]) {
         case 0:
+          // case 2:
+          // case 3:
           textSettingsArray[i] = 'normal';
           break;
         case 1:
+          textSettingsArray[i] = 'bold';
+          break;
+        default:
           textSettingsArray[i] = 'bold';
           break;
       }
@@ -169,14 +201,19 @@ class App2 extends Component {
     for (let i = 18; i < 24; i++) {
       switch (tempVars[i]) {
         case 0:
+          // case 2:
+          // case 3:
           textSettingsArray[i] = 'normal';
           break;
         case 1:
           textSettingsArray[i] = 'italic';
           break;
+        default:
+          textSettingsArray[i] = 'normal';
+          break;
       }
     }
-    console.log(textSettingsArray)
+    // set generated values to state
     this.setState({
       textSettings: textSettingsArray,
     })
@@ -244,10 +281,7 @@ class App2 extends Component {
     })
   }
 
-  
-
   saveScheme = () => {
-    // e.preventDefault()
     let colorTags4Save = this.state.colors.map((element) => { return `#${element}` })
     let saveSchemeObj = {
       colrOrgId: -1,
@@ -274,7 +308,6 @@ class App2 extends Component {
       })
       .then(response => {
         console.log(response)
-        console.log(saveSchemeObj)
       })
       .catch(err => console.log(err))
   }
@@ -285,19 +318,16 @@ class App2 extends Component {
     let positionClass = this.state.positionClass
     let paragraphText = this.state.paragraphText
     let textSettings = this.state.textSettings
-    console.log(this.state.paragraphText)
 
     return (
 
       <Router basename='/'>
         <div className="App">
-        <button onClick={() => this.saveScheme()}>saveScheme</button>
           <nav>
             <Link to="/">How to Use</Link>
             <Link to="/randomize-colors">Randomize Palette</Link>
             <Link to="/randomize-layout">Randomize Page</Link>
             <Link to="/configure-colors">Configure Colors</Link>
-            {/* <Link to="/configure-text">Configure Text</Link> */}
           </nav>
           <Route exact path="/" component={HowToUse} />
           <Route path="/randomize-colors">
@@ -305,18 +335,19 @@ class App2 extends Component {
               positionClass={positionClass} paragraphText={paragraphText}
               randomizeColors={this.randomizeColors}
               bgColor={this.bgColor} bgWhite={this.bgWhite} bgBlack={this.bgBlack}
-              fetchScheme={this.fetchScheme} textSettings={textSettings} />
+              fetchScheme={this.fetchScheme} textSettings={textSettings}
+              headingText={this.state.headingText} />
           </Route>
           <Route path="/randomize-layout">
             <RandomizeLayout colorTags={colorTags} positionings={positionings} positionClass={positionClass}
               shuffleLayout={this.shuffleLayout} hipsterIpsum={this.hipsterIpsum} paragraphText={paragraphText}
-              textSettings={textSettings} shuffleText={this.shuffleText} />
+              textSettings={textSettings} shuffleText={this.shuffleText} headingText={this.state.headingText} />
           </Route>
           <Route path="/configure-colors">
             <ConfigureColors colorTags={colorTags} positionings={positionings}
               positionClass={positionClass} paragraphText={paragraphText} bgColorPrint={this.state.bgColorPrint}
               removedColors={this.state.removedColors} setAColor={this.setAColor}
-              textSettings={textSettings} />
+              textSettings={textSettings} saveScheme={this.saveScheme} headingText={this.state.headingText} />
           </Route>
         </div>
       </Router>

@@ -14,7 +14,7 @@ class RandomizeLayout extends Component {
                 <button onClick={() => this.props.shuffleText()}>Click for new text properties</button>
                 <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings}
-                    positionClass={this.props.positionClass}
+                    positionClass={this.props.positionClass} headingText={this.props.headingText}
                     paragraphText={this.props.paragraphText} textSettings={this.props.textSettings} />
             </div>
         )

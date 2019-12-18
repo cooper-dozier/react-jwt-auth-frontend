@@ -124,3 +124,10 @@ img {
   border: 7px double teal;
   border-radius:17px;
 }
+.lineUp {
+  display: inline-block;
+}
+
+.capital {
+  text-transform: capitalize;
+}

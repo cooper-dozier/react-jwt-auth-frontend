@@ -110,7 +110,8 @@ class App1 extends Component {
   render() {
     return (
       <div>
-        <NavBar email={this.state.email} isLoggedIn={this.state.isLoggedIn} /* user={this.state.user} */ handleLogOut={e => this.handleLogOut(e)} />
+        <NavBar email={this.state.email} isLoggedIn={this.state.isLoggedIn} /* user={this.state.user} */ 
+        handleLogOut={e => this.handleLogOut(e)} />
         <div className='body'>
           <Switch>
             <Route path='/signup'

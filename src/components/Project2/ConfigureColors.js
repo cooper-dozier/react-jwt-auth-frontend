@@ -43,7 +43,7 @@ class ConfigureColors extends Component {
                     {this.props.bgColorPrint}
                 </ul>
 
-                <form onSubmit={this.handleSubmit}>
+                <form className='lineUp' onSubmit={this.handleSubmit}>
                     <label>
                         Slot to set?
                         <input type="number" value={this.state.value1} onChange={this.handleChange1}
@@ -56,11 +56,12 @@ class ConfigureColors extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
+                <button className='lineUp' onClick={() => this.props.saveScheme()}>saveScheme</button>
 
                 <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings}
                     paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} 
-                    textSettings={this.props.textSettings} />
+                    textSettings={this.props.textSettings} headingText={this.props.headingText} />
             </div>
         )
     }

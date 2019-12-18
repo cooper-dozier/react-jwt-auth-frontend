@@ -10,10 +10,11 @@ class NavBar extends Component {
     let navBarItems = [<a key={1} href='/'>Home</a>,<a key={2} href='color-explorer'>Play</a>]
     if (this.props.isLoggedIn) {
       // navBarItems.push(<a key={2} href='/logout'>Log Out</a>)
-      navBarItems.push(<a href='/' onClick={this.props.handleLogOut}>Log Out</a>)
-      navBarItems.push(<span>{this.props.email}</span>)
-      if (window.location.pathname != '/profile') {
-        navBarItems.push(<a key={3} href='/profile'>Profile</a>)
+      navBarItems.push(<a key={3} href='/' onClick={this.props.handleLogOut}>Log Out</a>)
+      navBarItems.push(<span key={4} >{this.props.email}</span>)
+      navBarItems.push(<a key={5} href='/save'>Save Colors</a> )
+      if (window.location.pathname !== '/profile') {
+        navBarItems.push(<a key={6} href='/profile'>Profile</a>)
       }
       // if (this.props.user.email != null) {
       //   if (this.props.isLoggedIn) {
@@ -21,12 +22,12 @@ class NavBar extends Component {
       // }
 
     } else {
-      navBarItems.push(<a key={4} href='/signup'>Sign Up</a>)
-      navBarItems.push(<a key={5} href='/login'>Log In</a>)
+      navBarItems.push(<a key={7} href='/signup'>Sign Up</a>)
+      navBarItems.push(<a key={8} href='/login'>Log In</a>)
     }
-    navBarItems.push(<h1>Color Schemes Explorer</h1>)
+    navBarItems.push(<h1 key={9} >Color Schemes Explorer</h1>)
     return (
-      <nav brand='Project 4 React Starter' className='nav'>
+      <nav className='nav'>
 
         {navBarItems}
       </nav>

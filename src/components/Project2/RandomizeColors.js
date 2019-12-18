@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ColorManifest from './ColorManifest';
 import TestingBlock from './TestingBlock';
+// import {bgBlack} from '../machinery.js';
 
 class RandomizeColors extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class RandomizeColors extends Component {
         this.state = {
             value1: '',
             value2: '',
+            // bgColorPrint: '',
         };
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,11 +30,12 @@ class RandomizeColors extends Component {
                 <button onClick={() => this.props.bgColor()}>Random background</button>
                 <button onClick={() => this.props.bgWhite()}>Whitish background</button>
                 <button onClick={() => this.props.bgBlack()}>Off-black background</button>
+                {/* <button onClick={() => bgBlack()}>Off-black background</button> */}
                 <form onSubmit={() => this.props.fetchScheme(this.state.value2)}>
                     <label>
                         Fetch scheme from colr.org by id number:
                         <input type="number" value={this.state.value2} onChange={this.handleChange2}
-                            placeholder='number from 1 to 17564' />
+                            placeholder='Number 1 to 17564' />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
@@ -40,7 +43,7 @@ class RandomizeColors extends Component {
                 <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings} 
                 paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} 
-                textSettings={this.props.textSettings} />
+                textSettings={this.props.textSettings} headingText={this.props.headingText} />
             </div>
         )
     }

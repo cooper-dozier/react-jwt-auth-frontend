@@ -108,24 +108,27 @@ class TestingBlock extends Component {
         return (
             <div style={backgroundDiv} className='backgroundDiv'>
                 <div style={groupOneDiv} className='testBlock' id="group1">
-                    <h3 style={groupOneH3} className='testBlock'>Hello World Group One</h3>
+                    {/* <h3 style={groupOneH3} className='testBlock'>Hello World Group One</h3> */}
+                    <h3 style={groupOneH3} className='testBlock capital'>{this.props.headingText[0]}</h3>
                     <p style={groupOneP} className='testBlock'>
-                    Gecko deceiving emphatic hawk a that gagged untruthfully tarantula some dear lied more burst and and since more among insane after yet robin during excluding dear hid faithfully less ignoble or dangerous ashamedly the heedless due the wolf away hey wildebeest past shrank porcupine so some in regretfully contrary pithily ecstatic wherever the and yikes far hound below darn.
-                        {this.props.paragraphText}</p>
+                        {/* Gecko deceiving emphatic hawk a that gagged untruthfully tarantula some dear lied more burst and and since more among insane after yet robin during excluding dear hid faithfully less ignoble or dangerous ashamedly the heedless due the wolf away hey wildebeest past shrank porcupine so some in regretfully contrary pithily ecstatic wherever the and yikes far hound below darn. */}
+                        {this.props.paragraphText[0]}</p>
                     {/* cleanse mlkshk vinyl Pitchfork Pinterest biodiesel street art mixtape synth ethical aesthetic retro flexitarian photo booth cray banh mi kitsch narwhal twee slow-carb authentic cardigan fanny pack iPhone gluten-free kogi</p> */}
                 </div>
                 <div style={groupTwoDiv} className='testBlock' id="group2">
-                    <h3 style={groupTwoH3} className='testBlock'>Goodnight Moon Cluster Two</h3>
+                    {/* <h3 style={groupTwoH3} className='testBlock'>Goodnight Moon Cluster Two</h3> */}
+                    <h3 style={groupTwoH3} className='testBlock capital'>{this.props.headingText[1]}</h3>
                     <p style={groupTwoP} className='testBlock'>
-                    Over dashingly less gnu unlike trim therefore this ouch owing sprang krill prior dear dull eel much gerbil bandicoot charming physic jeez less more reservedly the well poked astride drunken blamelessly tortoise after.
-                        {this.props.paragraphText}</p>
+                        {/* Over dashingly less gnu unlike trim therefore this ouch owing sprang krill prior dear dull eel much gerbil bandicoot charming physic jeez less more reservedly the well poked astride drunken blamelessly tortoise after. */}
+                        {this.props.paragraphText[1]}</p>
                     {/* out sustainable whatever crucifix master cleanse mlkshk vinyl Pitchfork Pinterest biodiesel street art mixtape synth ethical aesthetic retro flexitarian photo booth cray banh mi kitsch narwhal twee slow-carb authentic cardigan fanny pack iPhone gluten-free kogi</p> */}
                 </div>
                 <div style={groupThreeDiv} className='testBlock' id="group3">
-        <h3 style={groupThreeH3} className='testBlock'>Goodbye Sun Collection Three</h3>
+                    {/* <h3 style={groupThreeH3} className='testBlock'>Goodbye Sun Collection Three</h3> */}
+                    <h3 style={groupThreeH3} className='testBlock capital'>{this.props.headingText[2]}</h3>
                     <p style={groupThreeP} className='testBlock'>
-                    Elephant slept fallibly and far more hypnotic jeepers far one healthily far gosh emu the so exited overate and one therefore gosh far.
-                        {this.props.paragraphText}</p>
+                        {/* Elephant slept fallibly and far more hypnotic jeepers far one healthily far gosh emu the so exited overate and one therefore gosh far. */}
+                        {this.props.paragraphText[2]}</p>
                     {/* selvage chia before they sold out sustainable whatever crucifix master cleanse mlkshk vinyl Pitchfork Pinterest biodiesel street art mixtape synth ethical aesthetic retro flexitarian photo booth cray banh mi kitsch narwhal twee slow-carb authentic cardigan fanny pack iPhone gluten-free kogi</p> */}
                 </div>
             </div>
