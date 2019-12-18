@@ -27,15 +27,15 @@ class App2 extends Component {
       removedColors: [],
       paragraphText: '',
       headingText: '',
-      bgColorPrint: 'antiquewhite',
-      colrOrgId: -1,
+      bgColorPrint: '#FAEBD7',
+      colrOrgId: 'none',
       textSettings: [],
       isLoggedIn: false,
     }
     this.randomizeColors = this.randomizeColors.bind(this)
     this.shuffleLayout = this.shuffleLayout.bind(this)
     this.setAColor = this.setAColor.bind(this)
-    this.hipsterIpsum = this.hipsterIpsum.bind(this)
+    this.getGibberish = this.getGibberish.bind(this)
     this.bgColor = this.bgColor.bind(this)
     this.bgWhite = this.bgWhite.bind(this)
     this.bgBlack = this.bgBlack.bind(this)
@@ -43,27 +43,19 @@ class App2 extends Component {
     this.fetchScheme = this.fetchScheme.bind(this)
     this.shuffleText = this.shuffleText.bind(this)
     this.saveScheme = this.saveScheme.bind(this)
+    this.loadSchemeFromDb = this.loadSchemeFromDb.bind(this)
   }
 
-  componentDidMount() {
-    this.hipsterIpsum()
-    // if (localStorage.token) {
-    //   this.setState({
-    //     isLoggedIn: true
-    //   })
-    // } else {
-    //   this.setState({
-    //     isLoggedIn: false
-    //   })
-    // }
-  }
+  // uncomment for production
+  // componentDidMount() {
+  //   this.getGibberish()
+  // }
 
 
 
   randomizeColors() {
     axios({
       url: `http://www.colr.org/json/schemes/random/1`,
-      // url: `https://cors-anywhere.herokuapp.com/http://www.colr.org/json/schemes/random/1`,
       method: 'get'
     })
       .then(response => {
@@ -78,7 +70,6 @@ class App2 extends Component {
 
   fetchScheme(schemeId) {
     axios({
-      // url: `https://cors-anywhere.herokuapp.com/http://www.colr.org/json/scheme/${schemeId}`,
       url: `http://www.colr.org/json/scheme/${schemeId}`,
       method: 'get'
     })
@@ -90,7 +81,7 @@ class App2 extends Component {
       })
   }
 
-  hipsterIpsum() {
+  getGibberish() {
     axios({
       url: 'http://www.randomtext.me/api/giberish/p-3/15-75',
       method: 'get'
@@ -123,30 +114,32 @@ class App2 extends Component {
     // 0-1 of values font-weight: normal, bold 
     // 0-1 of values font-style: italic, normal
     // 24 total properties to set out of 12 possible values
-    function shuffleOf4() { return Math.floor(Math.random() * 4) }
-    function shuffleOf2() { return Math.floor(Math.random() * 2) }
+    function shuffle(min, maxPlus1) { return Math.floor(Math.random() * (maxPlus1 - min)) + min }
+    // get 6 random numbers from 0-6
+    for (let i = 0; i < 6; i++) {
+      tempVars[i] = shuffle(0, 7)
+    }
     // get 12 random numbers from 0-3
     for (let i = 0; i < 12; i++) {
-      tempVars[i] = shuffleOf4()
+      tempVars[i] = shuffle(0, 4)
     }
     // get 12 random number from 0-1
     for (let i = 12; i < 24; i++) {
-      tempVars[i] = shuffleOf2()
+      tempVars[i] = shuffle(0, 3)
     }
     // set six random values for font-family
     for (let i = 0; i < 6; i++) {
       switch (tempVars[i]) {
         case 0:
-          // case 4:
+        case 4:
           textSettingsArray[i] = 'monospace';
           break;
         case 1:
-          // case 5:
+        case 5:
           textSettingsArray[i] = 'serif';
           break;
         case 2:
-          // case 6:
-          // case 7:
+        case 6:
           textSettingsArray[i] = 'sans-serif';
           break;
         case 3:
@@ -161,19 +154,15 @@ class App2 extends Component {
     for (let i = 6; i < 12; i++) {
       switch (tempVars[i]) {
         case 0:
-          // case 4:
           textSettingsArray[i] = 'left';
           break;
         case 1:
-          // case 5:
           textSettingsArray[i] = 'center';
           break;
         case 2:
-          // case 6:
           textSettingsArray[i] = 'right';
           break;
         case 3:
-          // case 7:
           textSettingsArray[i] = 'justify';
           break;
         default:
@@ -185,8 +174,7 @@ class App2 extends Component {
     for (let i = 12; i < 18; i++) {
       switch (tempVars[i]) {
         case 0:
-          // case 2:
-          // case 3:
+        case 2:
           textSettingsArray[i] = 'normal';
           break;
         case 1:
@@ -201,8 +189,8 @@ class App2 extends Component {
     for (let i = 18; i < 24; i++) {
       switch (tempVars[i]) {
         case 0:
-          // case 2:
-          // case 3:
+        case 2:
+
           textSettingsArray[i] = 'normal';
           break;
         case 1:
@@ -222,7 +210,7 @@ class App2 extends Component {
 
   shuffleLayout() {
     let positionsArray = []
-    function shuffle(min, max) { return Math.floor(Math.random() * (max - min)) + min }
+    function shuffle(min, maxPlus1) { return Math.floor(Math.random() * (maxPlus1 - min)) + min }
 
     for (let i = 0; i < 10; i++) {
       positionsArray[i] = shuffle(-10, 80) + '%'
@@ -268,9 +256,9 @@ class App2 extends Component {
   }
   bgWhite() {
     let wholePage = document.querySelector('body')
-    wholePage.setAttribute('style', 'background-color: antiquewhite')
+    wholePage.setAttribute('style', 'background-color: #FAEBD7')
     this.setState({
-      bgColorPrint: 'antiquewhite'
+      bgColorPrint: '#FAEBD7'
     })
   }
   bgBlack() {
@@ -288,17 +276,28 @@ class App2 extends Component {
       paletteName: 'dummy',
       notes: 'whatevs',
       userId: 3,
-      color0: colorTags4Save[0],
-      color1: colorTags4Save[1],
-      color2: colorTags4Save[2],
-      color3: colorTags4Save[3],
-      color4: colorTags4Save[4],
-      color5: colorTags4Save[5],
-      color6: colorTags4Save[6],
-      color7: colorTags4Save[7],
-      color8: colorTags4Save[8],
-      color9: colorTags4Save[9],
-      color10: colorTags4Save[10]
+      // color0: colorTags4Save[0],
+      // color1: colorTags4Save[1],
+      // color2: colorTags4Save[2],
+      // color3: colorTags4Save[3],
+      // color4: colorTags4Save[4],
+      // color5: colorTags4Save[5],
+      // color6: colorTags4Save[6],
+      // color7: colorTags4Save[7],
+      // color8: colorTags4Save[8],
+      // color9: colorTags4Save[9],
+      // color10: colorTags4Save[10]
+      color0: this.state.colors[0],
+      color1: this.state.colors[1],
+      color2: this.state.colors[2],
+      color3: this.state.colors[3],
+      color4: this.state.colors[4],
+      color5: this.state.colors[5],
+      color6: this.state.colors[6],
+      color7: this.state.colors[7],
+      color8: this.state.colors[8],
+      color9: this.state.colors[9],
+      color10: this.state.colors[10]
     }
     axios(
       {
@@ -310,6 +309,50 @@ class App2 extends Component {
         console.log(response)
       })
       .catch(err => console.log(err))
+  }
+
+  loadProfile() {
+
+  }
+
+  loadSchemeFromDb(paletteId) {
+    axios({
+        method: 'get',
+        url: `${databaseUrl}/api/palettes/${paletteId}`
+      })
+      .then(response => {
+        let buildColors = []
+        // for (let i=10; i>-1; i--) {
+          // let colorLoop = `color${i}`
+          // can't see a way to use a loop to set the number on color
+          // won't rewrite to use array in DB
+          // I've heard you aren't supposed to store arrays and objects in tables
+          buildColors.push(response.data.thePalette.color0)
+          buildColors.push(response.data.thePalette.color1)
+          buildColors.push(response.data.thePalette.color2)
+          buildColors.push(response.data.thePalette.color3)
+          buildColors.push(response.data.thePalette.color4)
+          buildColors.push(response.data.thePalette.color6)
+          buildColors.push(response.data.thePalette.color7)
+          buildColors.push(response.data.thePalette.color8)
+          buildColors.push(response.data.thePalette.color9)
+          buildColors.push(response.data.thePalette.color10)
+          // for (let i = 0; i<10; i++) {
+          //   let temp = buildColors
+          //   buildColors[i] = temp[i].replace('#','')
+          // }
+          this.setState({
+            colors: buildColors,
+            colrOrgId: response.data.thePalette.colrOrgId
+          })
+          // buildColors.push(response.data.thePalette.color0)
+        // }
+        console.log(buildColors)
+        // this.setState({
+        //   colors: response.data.schemes[0].colors,
+        //   colrOrgId: response.data.schemes[0].id
+        // })
+      })
   }
 
   render() {
@@ -331,23 +374,52 @@ class App2 extends Component {
           </nav>
           <Route exact path="/" component={HowToUse} />
           <Route path="/randomize-colors">
-            <RandomizeColors colorTags={colorTags} positionings={positionings}
-              positionClass={positionClass} paragraphText={paragraphText}
+            <RandomizeColors
+              colorTags={colorTags}
+              positionings={positionings}
+              positionClass={positionClass}
+              paragraphText={paragraphText}
               randomizeColors={this.randomizeColors}
-              bgColor={this.bgColor} bgWhite={this.bgWhite} bgBlack={this.bgBlack}
-              fetchScheme={this.fetchScheme} textSettings={textSettings}
-              headingText={this.state.headingText} />
+              bgColor={this.bgColor}
+              bgWhite={this.bgWhite}
+              bgBlack={this.bgBlack}
+              fetchScheme={this.fetchScheme}
+              textSettings={textSettings}
+              headingText={this.state.headingText}
+              bgColorPrint={this.state.bgColorPrint}
+              colrOrgId={this.state.colrOrgId} 
+              loadSchemeFromDb={this.loadSchemeFromDb}
+              />
           </Route>
           <Route path="/randomize-layout">
-            <RandomizeLayout colorTags={colorTags} positionings={positionings} positionClass={positionClass}
-              shuffleLayout={this.shuffleLayout} hipsterIpsum={this.hipsterIpsum} paragraphText={paragraphText}
-              textSettings={textSettings} shuffleText={this.shuffleText} headingText={this.state.headingText} />
+            <RandomizeLayout
+              colorTags={colorTags}
+              positionings={positionings}
+              positionClass={positionClass}
+              shuffleLayout={this.shuffleLayout}
+              paragraphText={paragraphText}
+              textSettings={textSettings}
+              shuffleText={this.shuffleText}
+              headingText={this.state.headingText}
+              bgColorPrint={this.state.bgColorPrint}
+              colrOrgId={this.state.colrOrgId} 
+              getGibberish={this.getGibberish}
+              />
           </Route>
           <Route path="/configure-colors">
-            <ConfigureColors colorTags={colorTags} positionings={positionings}
-              positionClass={positionClass} paragraphText={paragraphText} bgColorPrint={this.state.bgColorPrint}
-              removedColors={this.state.removedColors} setAColor={this.setAColor}
-              textSettings={textSettings} saveScheme={this.saveScheme} headingText={this.state.headingText} />
+            <ConfigureColors
+              colorTags={colorTags}
+              positionings={positionings}
+              positionClass={positionClass}
+              paragraphText={paragraphText}
+              bgColorPrint={this.state.bgColorPrint}
+              removedColors={this.state.removedColors}
+              setAColor={this.setAColor}
+              textSettings={textSettings}
+              saveScheme={this.saveScheme}
+              headingText={this.state.headingText}
+              colrOrgId={this.state.colrOrgId} 
+              />
           </Route>
         </div>
       </Router>

@@ -9,18 +9,18 @@ class RandomizeColors extends Component {
         this.state = {
             value1: '',
             value2: '',
-            // bgColorPrint: '',
+            bgColorPrint: '',
         };
         this.handleChange2 = this.handleChange2.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange2(event) {
         this.setState({ value2: event.target.value });
     }
-    handleSubmit(event) {
-        this.props.setAColor(this.state.value2, this.state.value1)
-        event.preventDefault();
-    }
+    // handleSubmit(event) {
+    //     this.props.setAColor(this.state.value2, this.state.value1)
+    //     event.preventDefault();
+    // }
 
     render() {
 
@@ -39,8 +39,17 @@ class RandomizeColors extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
+                <form onSubmit={() => this.props.loadSchemeFromDb(this.state.value2)}>
+                    <label>
+                        Fetch scheme DB by id number:
+                        <input type="number" value={this.state.value2} onChange={this.handleChange2}
+                            placeholder='Number' />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
                 {/* <button onClick={() => this.props.fetchScheme()}>Set Me</button> */}
-                <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
+                <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings}
+                bgColorPrint={this.props.bgColorPrint} colrOrgId={this.props.colrOrgId} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings} 
                 paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} 
                 textSettings={this.props.textSettings} headingText={this.props.headingText} />

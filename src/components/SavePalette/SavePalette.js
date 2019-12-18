@@ -8,18 +8,20 @@ class SavePalette extends Component {
 
     render() {
         return (
-            <p>empty</p>
-            <form>
-                Name
-                Notes
-                Submit Button
-            </form>
-            <p>
-                display prepopulated
-                color manifest
-                colrOrgId
-            </p>
-      )
+            <div container>
+                <p>empty</p>
+                <form>
+                    Name
+                    Notes
+                    Submit Button
+                </form>
+                <p>
+                    display prepopulated
+                    color manifest
+                    colrOrgId
+                </p>
+            </div>
+        )
     }
 
 }

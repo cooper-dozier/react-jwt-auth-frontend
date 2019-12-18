@@ -12,7 +12,9 @@ class RandomizeLayout extends Component {
             <div>
                 <button onClick={() => this.props.shuffleLayout()}>Click for new layout</button>
                 <button onClick={() => this.props.shuffleText()}>Click for new text properties</button>
-                <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
+                <button onClick={() => this.props.getGibberish()}>Click for new gibberish</button>
+                <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} 
+                bgColorPrint={this.props.bgColorPrint} colrOrgId={this.props.colrOrgId} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings}
                     positionClass={this.props.positionClass} headingText={this.props.headingText}
                     paragraphText={this.props.paragraphText} textSettings={this.props.textSettings} />

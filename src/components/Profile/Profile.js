@@ -9,7 +9,7 @@ class Profile extends Component {
     return (
       <div>
         <h3>
-    <span className='user-email'>{this.props.email}</span>'s saved palettes:
+    <span className='user-email'>{this.props.userHandle}</span>'s saved palettes:
         </h3>
         <table>
           <thead>

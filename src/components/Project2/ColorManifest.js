@@ -18,6 +18,7 @@ class ColorManifest extends Component {
         let color8a = {backgroundColor: this.props.colorTags[8]}
         let color9a = {backgroundColor: this.props.colorTags[9]}
         let color10a = {backgroundColor: this.props.colorTags[10]}
+        let colorBG = {backgroundColor: this.props.bgColorPrint}
         return (
             <p className='colorManifest'>
             0:&nbsp;{this.props.colorTags[0]}&nbsp;<span style={color0a}>_____</span> -
@@ -30,7 +31,9 @@ class ColorManifest extends Component {
             7:&nbsp;{this.props.colorTags[7]}&nbsp;<span style={color7a}>_____</span> -
             8:&nbsp;{this.props.colorTags[8]}&nbsp;<span style={color8a}>_____</span> -
             9:&nbsp;{this.props.colorTags[9]}&nbsp;<span style={color9a}>_____</span> -
-            10:&nbsp;{this.props.colorTags[10]}&nbsp;<span style={color10a}>_____</span>
+            10:&nbsp;{this.props.colorTags[10]}&nbsp;<span style={color10a}>_____</span> -
+            BG:&nbsp;{this.props.bgColorPrint}&nbsp;<span style={colorBG}>_____</span> -
+            Colr.Org ID: {this.props.colrOrgId}
             </p>
         )
     }

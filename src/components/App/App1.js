@@ -22,7 +22,7 @@ class App1 extends Component {
     email: '',
     password: '',
     isLoggedIn: false,
-    user: null
+    userHandle: null
   }
 
   componentDidMount() {
@@ -43,6 +43,7 @@ class App1 extends Component {
     this.setState({
       email: '',
       password: '',
+      userHandle: '',
       isLoggedIn: false
     })
     this.props.history.push('/login')
@@ -81,7 +82,7 @@ class App1 extends Component {
     e.preventDefault()
     let loginUser = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     }
     axios(
       {
@@ -95,8 +96,9 @@ class App1 extends Component {
         this.setState({
           isLoggedIn: true,
           user: response.data.user,
-          // email: '',
-          password: ''
+          email: '',
+          password: '',
+          userHandle: this.state.userHandle
         })
         const location = {
           pathname: '/profile',
@@ -131,7 +133,7 @@ class App1 extends Component {
             <Route path='/profile'
               render={(props) => {
                 return (
-                  <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} email={this.state.email} />
+                  <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} email={this.state.email} userHandle={this.state.userHandle} />
                 )
               }}
             />

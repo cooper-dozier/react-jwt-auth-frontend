@@ -58,7 +58,8 @@ class ConfigureColors extends Component {
                 </form>
                 <button className='lineUp' onClick={() => this.props.saveScheme()}>saveScheme</button>
 
-                <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings} />
+                <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings}
+                bgColorPrint={this.props.bgColorPrint} colrOrgId={this.props.colrOrgId} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings}
                     paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} 
                     textSettings={this.props.textSettings} headingText={this.props.headingText} />
