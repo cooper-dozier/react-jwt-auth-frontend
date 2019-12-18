@@ -353,6 +353,7 @@ class App2 extends Component {
         //   colrOrgId: response.data.schemes[0].id
         // })
       })
+      .catch(err => console.log(err))
   }
 
   render() {
