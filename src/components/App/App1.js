@@ -16,7 +16,7 @@ import './App2.css'
 import './App1.css'
 
 
-const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
+let databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
 
 class App1 extends Component {
   state = {

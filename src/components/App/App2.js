@@ -13,8 +13,8 @@ import {
   Link
 } from 'react-router-dom';
 
-const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
-
+// let databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
+const databaseUrl = 'https://color-schemes-backend-again.herokuapp.com'
 
 class App2 extends Component {
   constructor(props) {
