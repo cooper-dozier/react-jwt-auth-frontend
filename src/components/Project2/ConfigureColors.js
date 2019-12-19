@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ColorManifest from './ColorManifest';
 import TestingBlock from './TestingBlock';
 
+const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
+
 class ConfigureColors extends Component {
     constructor(props) {
         super();
@@ -37,17 +39,17 @@ class ConfigureColors extends Component {
                     <h4>Removed Colors:</h4>
                    {removedColorsList}
                 </ul>
-
-                <ul id="bgColorDiv">
+                
+                {/* <ul id="bgColorDiv">
                     <h4>Background Color:</h4>
                     {this.props.bgColorPrint}
-                </ul>
-
+                </ul> */}
+                
                 <form className='lineUp' onSubmit={this.handleSubmit}>
                     <label>
                         Slot to set?
                         <input type="number" value={this.state.value1} onChange={this.handleChange1}
-                            placeholder='a number 0-10' />
+                            placeholder='Num 0-10' />
                     </label>
                     <label>
                         Color to set it to?

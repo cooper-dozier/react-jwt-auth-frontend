@@ -3,6 +3,8 @@ import ColorManifest from './ColorManifest';
 import TestingBlock from './TestingBlock';
 // import {bgBlack} from '../machinery.js';
 
+const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
+
 class RandomizeColors extends Component {
     constructor(props) {
         super();
@@ -31,24 +33,25 @@ class RandomizeColors extends Component {
                 <button onClick={() => this.props.bgWhite()}>Whitish background</button>
                 <button onClick={() => this.props.bgBlack()}>Off-black background</button>
                 {/* <button onClick={() => bgBlack()}>Off-black background</button> */}
-                <form onSubmit={() => this.props.fetchScheme(this.state.value2)}>
+                <br />
+                <form className="inline-form" onSubmit={() => this.props.fetchScheme(this.state.value2)}>
                     <label>
-                        Fetch scheme from colr.org by id number:
+                        Get scheme by colr.org ID#:
                         <input type="number" value={this.state.value2} onChange={this.handleChange2}
-                            placeholder='Number 1 to 17564' />
+                            placeholder='1 to 17564' />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                <form onSubmit={() => this.props.loadSchemeFromDb(this.state.value2)}>
+                <form className="inline-form" onSubmit={() => this.props.loadSchemeFromDb(this.state.value2)}>
                     <label>
-                        Fetch scheme DB by id number:
+                        Get saved scheme by DB ID#:
                         <input type="number" value={this.state.value2} onChange={this.handleChange2}
                             placeholder='Number' />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
                 {/* <button onClick={() => this.props.fetchScheme()}>Set Me</button> */}
-                <ColorManifest colorTags={this.props.colorTags} positionings={this.props.positionings}
+                <ColorManifest colorTags={this.props.colorTags} /* positionings={this.props.positionings} */
                 bgColorPrint={this.props.bgColorPrint} colrOrgId={this.props.colrOrgId} />
                 <TestingBlock colorTags={this.props.colorTags} positionings={this.props.positionings} 
                 paragraphText={this.props.paragraphText} positionClass={this.props.positionClass} 

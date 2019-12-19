@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
   Route,
   Switch,
-  withRouter
+  withRouter,
+  Link
 } from 'react-router-dom'
 import axios from 'axios'
 
@@ -22,7 +23,9 @@ class App1 extends Component {
     email: '',
     password: '',
     isLoggedIn: false,
-    userHandle: null
+    userHandle: null,
+    schemeHoard: [],
+    userId: -1,
   }
 
   componentDidMount() {
@@ -35,6 +38,21 @@ class App1 extends Component {
         isLoggedIn: false
       })
     }
+  }
+
+  loadUserData(userId) {
+    axios({
+      method: 'get',
+      url: `${databaseUrl}/api/palettes/user/${userId}`
+    })
+      .then(response => {
+        this.setState({
+          schemeHoard: response.data.palettes,
+          userId: userId
+        })
+        // console.log(this.state.schemes[0].color0)
+      })
+      .catch(err => console.log(err))
   }
 
   handleLogOut = (e) => {
@@ -93,12 +111,14 @@ class App1 extends Component {
       .then(response => {
         console.log(response)
         window.localStorage.setItem('token', response.data.token)
+        window.localStorage.setItem('userId', response.data.user.id)
         this.setState({
           isLoggedIn: true,
           user: response.data.user,
           email: '',
           password: '',
-          userHandle: this.state.userHandle
+          userHandle: this.state.userHandle,
+          userId: response.data.user.userId
         })
         const location = {
           pathname: '/profile',
@@ -107,9 +127,12 @@ class App1 extends Component {
         this.props.history.replace(location)
       })
       .catch(err => console.log(err))
+      // this.loadUserData(localStorage.getItem('userId'))
+      // console.log(localStorage.getItem('userId')
   }
 
   render() {
+    // console.log(this.state.schemeHoard)
     return (
       <div>
         <NavBar email={this.state.email} isLoggedIn={this.state.isLoggedIn} /* user={this.state.user} */ 
@@ -133,14 +156,15 @@ class App1 extends Component {
             <Route path='/profile'
               render={(props) => {
                 return (
-                  <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} email={this.state.email} userHandle={this.state.userHandle} />
+                  <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} email={this.state.email} 
+                  userHandle={this.state.userHandle}  schemeHoard={this.state.schemeHoard} userId={this.state.userId} />
                 )
               }}
             />
             <Route path='/color-explorer'
               render={(props) => {
                 return (
-                  <App2 />
+                  <App2 isLoggedIn={this.state.isLoggedIn} userId={this.state.userId} />
                 )
               }}
             />

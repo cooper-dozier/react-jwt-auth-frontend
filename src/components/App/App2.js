@@ -6,7 +6,6 @@ import RandomizeColors from '../Project2/RandomizeColors';
 import RandomizeLayout from '../Project2/RandomizeLayout';
 import ConfigureColors from '../Project2/ConfigureColors';
 import HowToUse from '../Project2/HowToUse';
-// import machinery from '../machinery.js';
 
 import {
   HashRouter as Router,
@@ -31,6 +30,7 @@ class App2 extends Component {
       colrOrgId: 'none',
       textSettings: [],
       isLoggedIn: false,
+      schemeProfile: [],
     }
     this.randomizeColors = this.randomizeColors.bind(this)
     this.shuffleLayout = this.shuffleLayout.bind(this)
@@ -50,7 +50,13 @@ class App2 extends Component {
   // componentDidMount() {
   //   this.getGibberish()
   // }
-
+componentDidMount() {
+  if (this.props.isLoggedIn === true) {
+    this.loadUserData(this.props.userId)
+  } else {
+    console.log('fail')
+  }
+}
 
 
   randomizeColors() {
@@ -68,6 +74,22 @@ class App2 extends Component {
       })
   }
 
+  loadUserData(userId) {
+    axios({
+      method: 'get',
+      url: `${databaseUrl}/api/palettes/user/${userId}`
+    })
+      .then(response => {
+        this.setState({
+          schemeProfile: response.data.palettes,
+          userId: userId
+        })
+        console.log(this.state.schemes[0].color0)
+      })
+      .catch(err => console.log(err))
+  }
+
+
   fetchScheme(schemeId) {
     axios({
       url: `http://www.colr.org/json/scheme/${schemeId}`,
@@ -78,6 +100,7 @@ class App2 extends Component {
           colors: response.data.schemes[0].colors,
           colrOrgId: response.data.schemes[0].id
         })
+        localStorage.setItem('testStuff',response.data.schemes[0].colors)
       })
   }
 
@@ -231,7 +254,7 @@ class App2 extends Component {
       positionings: positionsArray,
       positionClass: 'absolute',
     })
-    this.hipsterIpsum()
+    // this.hipsterIpsum()
   }
 
   setAColor(color, index) {
@@ -270,23 +293,11 @@ class App2 extends Component {
   }
 
   saveScheme = () => {
-    let colorTags4Save = this.state.colors.map((element) => { return `#${element}` })
     let saveSchemeObj = {
       colrOrgId: -1,
       paletteName: 'dummy',
       notes: 'whatevs',
-      userId: 3,
-      // color0: colorTags4Save[0],
-      // color1: colorTags4Save[1],
-      // color2: colorTags4Save[2],
-      // color3: colorTags4Save[3],
-      // color4: colorTags4Save[4],
-      // color5: colorTags4Save[5],
-      // color6: colorTags4Save[6],
-      // color7: colorTags4Save[7],
-      // color8: colorTags4Save[8],
-      // color9: colorTags4Save[9],
-      // color10: colorTags4Save[10]
+      userId: localStorage.userId,
       color0: this.state.colors[0],
       color1: this.state.colors[1],
       color2: this.state.colors[2],
@@ -372,6 +383,7 @@ class App2 extends Component {
             <Link to="/randomize-colors">Randomize Palette</Link>
             <Link to="/randomize-layout">Randomize Page</Link>
             <Link to="/configure-colors">Configure Colors</Link>
+            <Link to="/profilec">profilec</Link>
           </nav>
           <Route exact path="/" component={HowToUse} />
           <Route path="/randomize-colors">

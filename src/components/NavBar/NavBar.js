@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './NavBar.css'
 
+const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
+
 class NavBar extends Component {
   constructor(props) {
     super()
@@ -12,7 +14,7 @@ class NavBar extends Component {
       // navBarItems.push(<a key={2} href='/logout'>Log Out</a>)
       navBarItems.push(<a key={3} href='/' onClick={this.props.handleLogOut}>Log Out</a>)
       navBarItems.push(<span key={4} >{this.props.email}</span>)
-      navBarItems.push(<a key={5} href='/save'>Save Colors</a> )
+      // navBarItems.push(<a key={5} href='/save'>Save Colors</a> )
       if (window.location.pathname !== '/profile') {
         navBarItems.push(<a key={6} href='/profile'>Profile</a>)
       }
