@@ -47,16 +47,16 @@ class App2 extends Component {
   }
 
   // uncomment for production
-  // componentDidMount() {
-  //   this.getGibberish()
-  // }
-componentDidMount() {
-  if (this.props.isLoggedIn === true) {
-    this.loadUserData(this.props.userId)
-  } else {
-    console.log('fail')
+  componentDidMount() {
+    this.getGibberish()
   }
-}
+// componentDidMount() {
+//   if (this.props.isLoggedIn === true) {
+//     this.loadUserData(this.props.userId)
+//   } else {
+//     console.log('fail')
+//   }
+// }
 
 
   randomizeColors() {
