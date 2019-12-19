@@ -132,6 +132,7 @@ class App1 extends Component {
   }
 
   render() {
+    console.log(process.env)
     // console.log(this.state.schemeHoard)
     return (
       <div>
