@@ -105,7 +105,7 @@ class App2 extends Component {
 
   getGibberish() {
     axios({
-      url: 'http://www.randomtext.me/api/giberish/p-3/15-75',
+      url: 'https://www.randomtext.me/api/giberish/p-3/15-75',
       method: 'get'
     })
       .then(response => {
@@ -116,7 +116,7 @@ class App2 extends Component {
         })
       })
     axios({
-      url: 'http://www.randomtext.me/api/giberish/p-3/1-10',
+      url: 'https://www.randomtext.me/api/giberish/p-3/1-10',
       method: 'get'
     })
       .then(response => {
