@@ -13,7 +13,7 @@ class HowToUse extends Component {
                     a random user submitted color scheme from <a href="http://colr.org">colr.org</a> of 2 to 11 colors. 
                     The Randomize Layout page uses JavaScript to randomize spacing and element sizes and weights within 
                     certain bounds, as well as to set shuffled paragraph text from a Hipster Ipsum implementation at 
-                    <a href="http://hipsterjesus.com/">hipsterjesus.com</a>. The Configure Colors pages allows you to set 
+                    <a href="http://randomtext.me/">hipsterjesus.com</a>. The Configure Colors pages allows you to set 
                     colors one at a time to the page and prints the deleted colors' hex values at the top left. The 
                     changes made with each function will persist when switching functions until the browser tab is closed 
                     or reloaded</p>

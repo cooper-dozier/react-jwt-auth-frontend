@@ -1,7 +1,9 @@
 # Color Scheme Explorer Web App
 
-Live App: http://color-scheme-explorer.herokuapp.com/color-explorer#/
+### Live App: http://color-scheme-explorer.herokuapp.com/color-explorer#/
 * Note: some features as of 12/20/2019 may require using the app in http, NOT https, unfortunately
+### Incomplete features also at
+https://color-scheme-explorer.herokuapp.com
 
 ## New Features
 * Load colr schemes from colr.org by colr.org ID# (1 to 17564 at last count, though some IDs may be be deleted)
@@ -43,7 +45,11 @@ If the app is open in multiple tabs:
 * You can continue viewing random schemes and tweaking things in one or more tabs while you work on configuring your ideally customized color lineup in the third
 
 ### Try the app live at:
-https://color-scheme-explorer.herokuapp.com/color-explorer#/
+http://color-scheme-explorer.herokuapp.com/color-explorer#/
+#### Incomplete features also at
+https://color-scheme-explorer.herokuapp.com
+* Note: some features as of 12/20/2019 may require using the app in http, NOT https, unfortunately
+
 
 ## User Stories
 
@@ -57,9 +63,9 @@ https://color-scheme-explorer.herokuapp.com/color-explorer#/
 
 
 ### Randomize Colors Page Wireframe
-![randomize colors page wireframe](wireframe-randomize-colors-page.jpg)
+![randomize colors page wireframe](randomize-colors.jpg)
 ### Randomize Layout Block Wireframe
-![randomize layout block wireframe](wireframe-randomize-layout-block.jpg)
+![randomize layout block wireframe](randomize-layout-block.jpg)
 ### Profile Page Wireframe
 ![Profile Page Wireframe](loading-profile.jpg)
 ### Needed Actions Notes
