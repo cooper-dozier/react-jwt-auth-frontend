@@ -13,8 +13,7 @@ import {
   Link
 } from 'react-router-dom';
 
-// let databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
-const databaseUrl = 'https://color-schemes-backend-again.herokuapp.com'
+let databaseUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_APP_URL : 'http://localhost:3000'
 
 class App2 extends Component {
   constructor(props) {
@@ -117,7 +116,7 @@ class App2 extends Component {
         })
       })
     axios({
-      url: 'https://www.randomtext.me/api/giberish/p-3/1-10',
+      url: 'http://www.randomtext.me/api/giberish/p-3/1-10',
       method: 'get'
     })
       .then(response => {
@@ -383,7 +382,6 @@ class App2 extends Component {
             <Link to="/randomize-colors">Randomize Palette</Link>
             <Link to="/randomize-layout">Randomize Page</Link>
             <Link to="/configure-colors">Configure Colors</Link>
-            <Link to="/profilec">profilec</Link>
           </nav>
           <Route exact path="/" component={HowToUse} />
           <Route path="/randomize-colors">

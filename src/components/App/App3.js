@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import {
-  Route,
-  Switch,
-  withRouter,
-  Link
-} from 'react-router-dom'
 import axios from 'axios'
+import {
+    HashRouter as Router,
+    Route,
+    Link
+  } from 'react-router-dom';
 
 import NavBar from '../NavBar/NavBar'
 import SignUpForm from '../SignUpForm/SignUpForm'
@@ -18,7 +17,7 @@ import './App1.css'
 
 let databaseUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_APP_URL : 'http://localhost:3000'
 
-class App1 extends Component {
+class App3 extends Component {
   state = {
     email: '',
     password: '',
@@ -89,7 +88,6 @@ class App1 extends Component {
         console.log(response)
         const location = {
           pathname: '/login',
-          state: { fromDashboard: true }
         }
         this.props.history.replace(location)
       })
@@ -124,7 +122,6 @@ class App1 extends Component {
           pathname: '/profile',
           state: { fromDashboard: true }
         }
-        this.props.history.replace(location)
       })
       .catch(err => console.log(err))
       // this.loadUserData(localStorage.getItem('userId'))
@@ -139,41 +136,36 @@ class App1 extends Component {
         <NavBar email={this.state.email} isLoggedIn={this.state.isLoggedIn} /* user={this.state.user} */ 
         handleLogOut={e => this.handleLogOut(e)} />
         <div className='body'>
-          <Switch>
-            <Route path='/signup'
-              render={(props) => {
-                return (
-                  <SignUpForm isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleSignUp={this.handleSignUp} />
-                )
-              }}
-            />
-            <Route path='/login'
-              render={(props) => {
-                return (
-                  <LogInForm isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleLogIn={this.handleLogIn} />
-                )
-              }}
-            />
-            <Route path='/profile'
-              render={(props) => {
-                return (
-                  <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} email={this.state.email} 
+ 
+          <Router basename='/'>
+          <Link to="/new-profile">new profile</Link>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/profile">profile</Link>
+          <Link to="/login">log in</Link>
+          <Link to="/color-explorer">colors</Link>
+
+            <Route path="/color-explorer">
+                <App2 />
+            </Route>
+            <Route path="/login">
+                <LogInForm />
+            </Route>
+          {/* <Route exact path="/" component={HowToUse} /> */}
+          <Route path="profile">
+            <Profile />
+          </Route>
+          <Route path="/signup">
+              <SignUpForm />
+          </Route>
+          <Route path="/new-profile">
+          <Profile isLoggedIn={this.state.isLoggedIn} user={this.state.user} email={this.state.email} 
                   userHandle={this.state.userHandle}  schemeHoard={this.state.schemeHoard} userId={this.state.userId} />
-                )
-              }}
-            />
-            <Route path='/color-explorer'
-              render={(props) => {
-                return (
-                  <App2 isLoggedIn={this.state.isLoggedIn} userId={this.state.userId} />
-                )
-              }}
-            />
-          </Switch>
+          </Route>
+          </Router>
         </div>
       </div>
     )
   }
 }
 
-export default withRouter(App1)
+export default App3

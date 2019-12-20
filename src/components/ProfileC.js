@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
+const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_APP_URL : 'http://localhost:3000'
 
 class ProfileC extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class ProfileC extends Component {
     this.loadUserData = this.loadUserData.bind(this)
   }
 
-  componentDidMount
+  
 
   loadUserData(userId) {
     axios({

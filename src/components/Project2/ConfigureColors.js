@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ColorManifest from './ColorManifest';
 import TestingBlock from './TestingBlock';
 
-let databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
 
 class ConfigureColors extends Component {
     constructor(props) {

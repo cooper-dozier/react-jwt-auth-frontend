@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
 
 
 class HowToUse extends Component {

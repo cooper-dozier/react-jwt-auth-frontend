@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './NavBar.css'
 
-const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
-
 class NavBar extends Component {
   constructor(props) {
     super()

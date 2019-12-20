@@ -3,7 +3,6 @@ import ColorManifest from './ColorManifest';
 import TestingBlock from './TestingBlock';
 // import {bgBlack} from '../machinery.js';
 
-const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.BACKEND_APP_URL : 'http://localhost:3000'
 
 class RandomizeColors extends Component {
     constructor(props) {
