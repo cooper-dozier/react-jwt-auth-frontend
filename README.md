@@ -1,4 +1,20 @@
 # Color Scheme Explorer Web App
+
+Live App: http://color-scheme-explorer.herokuapp.com/color-explorer#/
+* Note: some features as of 12/20/2019 may require using the app in http, NOT https, unfortunately
+
+## New Features
+* Load colr schemes from colr.org by colr.org ID# (1 to 17564 at last count, though some IDs may be be deleted)
+* Save and load color schemes under a logged in user profile (incomplete)
+* Shuffle Text Properties
+* Improved randomized texts
+
+## Missing Feature
+* Problems with asynchronous data loading ruined Thursday
+* The profile page which hasn't worked was to be the linchpin of the Project 4 Starter Code frontend and my project 2 Color Schemes Tester
+* Save notes and names for user color schemes
+* View user's saved schemes with ID #s, notes and names for schemes 
+
 This program enables the user to, at the click of a button:
 
 * get random color schemes from colr.org
@@ -27,7 +43,7 @@ If the app is open in multiple tabs:
 * You can continue viewing random schemes and tweaking things in one or more tabs while you work on configuring your ideally customized color lineup in the third
 
 ### Try the app live at:
-https://pages.git.generalassemb.ly/cooperdozier/color-schemes-tester/
+https://color-scheme-explorer.herokuapp.com/color-explorer#/
 
 ## User Stories
 
@@ -44,3 +60,7 @@ https://pages.git.generalassemb.ly/cooperdozier/color-schemes-tester/
 ![randomize colors page wireframe](wireframe-randomize-colors-page.jpg)
 ### Randomize Layout Block Wireframe
 ![randomize layout block wireframe](wireframe-randomize-layout-block.jpg)
+### Profile Page Wireframe
+![Profile Page Wireframe](loading-profile.jpg)
+### Needed Actions Notes
+![Needed Actions Notes](needed-actions.jpg)

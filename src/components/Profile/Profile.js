@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './Profile.css'
 
-const databaseUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_APP_URL : 'http://localhost:3000'
-
 class Profile extends Component {
   render() {
     if (this.props.user != null) {
